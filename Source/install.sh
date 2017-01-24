@@ -9,6 +9,7 @@ echo $MYBB_DBPASSWORD
 echo $MYBB_DBHOSTNAME
 echo $MYBB_DBPORT
 
+MYBB_COM=`echo $MYBB_DBHOSTNAME | sed s/:\3306//g`
 # Configuration.
 CONFIG="./mybb-config"
 SOURCE="./mybb-source"
@@ -26,7 +27,7 @@ sed -e "s/MYBB_ADMINEMAIL/${MYBB_ADMINEMAIL}/g" \
 sed -e "s/MYBB_DBNAME/${MYBB_DBNAME}/g" \
     -e "s/MYBB_DBUSERNAME/${MYBB_DBUSERNAME}/g" \
     -e "s/MYBB_DBPASSWORD/${MYBB_DBPASSWORD}/g" \
-    -e "s/MYBB_DBHOSTNAME/${MYBB_DBHOSTNAME}/g" \
+    -e "s/MYBB_DBHOSTNAME/${MYBB_COM}/g" \
     -e "s/MYBB_DBPORT/${MYBB_DBPORT}/g" \
     "${CONFIG}/config.php" > "${TARGET}/inc/config.php"
 
@@ -36,7 +37,7 @@ sed -e "s/MYBB_ADMINEMAIL/${MYBB_ADMINEMAIL}/g" \
     "${CONFIG}/mybb.sql" | mysql \
     --user="$MYBB_DBUSERNAME" \
     --password="$MYBB_DBPASSWORD" \
-    --host="$MYBB_DBHOSTNAME" \
+    --host="$MYBB_COM" \
     --port="$MYBB_DBPORT" \
     --database="$MYBB_DBNAME" || echo "WE ASSUME DATA ALREADY EXISTS!"
 
