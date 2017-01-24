@@ -456,7 +456,7 @@
           }
         ],
         "HealthCheck": {
-            "Target": "HTTP:80/",
+            "Target": "TCP:80",
           "HealthyThreshold": "3",
           "UnhealthyThreshold": "5",
           "Interval": "10",
@@ -481,7 +481,7 @@
         "LoadBalancerNames": [
           { "Ref": "WWWBalancer" }
         ],
-        "HealthCheckType": "ELB",
+        "HealthCheckType": "EC2",
         "HealthCheckGracePeriod": 120,
         "MinSize": 1,
         "MaxSize": 1000,
