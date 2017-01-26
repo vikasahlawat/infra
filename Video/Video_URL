@@ -1,0 +1,2 @@
+As the Size of the video is greater than 25MB which is not acceptable by Git, thus I have placed the same on S3 bucket. Here is the link :
+https://s3.amazonaws.com/mybb.demo.com/Demo.mp4 
